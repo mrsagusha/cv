@@ -1,0 +1,511 @@
+@font-face {
+    font-family: "Hack";
+    src: url("./assets/fonts/Hack-Regular.ttf") format("truetype");
+  }
+
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    font-family: "Hack", sans-serif;
+    font-size: 0.8vw;
+    color: #c2c2c2;
+}
+
+.main {
+    display: flex;
+}
+
+.main__left-section {
+    width: 25%;
+    height: 100vh;
+    background-color: #202021;
+    z-index: 2;
+}
+
+.main__right-section {
+    width: 75%;
+    height: 100vh;
+    background-color: #181818;
+}
+
+h1 {
+    font-size: 1.5vw;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 1vw;
+}
+
+.main__profile-image-wrapper {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 100%;
+    border: 2px rgb(38, 114, 212) solid;
+    background-color: aliceblue;
+    margin: 0 auto;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    overflow: hidden;
+}
+
+.main__profile-image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.tab {
+    position: relative;
+    padding: 0.5vw 0 0.5vw 1.5vw;
+    border-top: 1px #454545 solid;
+}
+
+.tab:hover {
+    cursor: pointer;
+}
+
+.tab::before {
+    content: '';
+    position: absolute;
+    width: 0.35vw;
+    height: 0.35vw;
+    border-top: 1px #c2c2c2 solid;
+    border-right: 1px #c2c2c2 solid;
+    left: 0.5vw;
+    top: 0.7vw;
+    transform: rotate(45deg);
+}
+
+.pressed::before {
+    content: '';
+    position: absolute;
+    width: 0.35vw;
+    height: 0.35vw;
+    border-top: 1px #c2c2c2 solid;
+    border-right: 1px #c2c2c2 solid;
+    left: 0.5vw;
+    top: 0.7vw;
+    transform: rotate(135deg);
+}
+
+.tab__inner-info {
+    display: none;
+}
+
+.pressed > .tab__inner-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    padding-top: 1vw;
+}
+
+.tab__contact-wrapper {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.tab__language-wrapper {
+    display: flex;
+    gap: 5vw;
+    margin-bottom: 0.8vw;
+}
+
+.tab__language-skill {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+.language {
+    width: 3vw;
+}
+
+span {
+    padding: 0.3vw 0.8vw;
+    margin-right: 0.2vw;
+    background-color: #b27c5b;
+    border-radius: 100%;
+}
+
+.empty-span {
+    background-color: gray;
+}
+
+.tab__education-wrapper {
+    display: flex;
+    gap: 0.5vw;
+}
+
+.tab__education-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+
+.university {
+    color: #98d7ef;
+}
+
+.specialization {
+    font-style: italic;
+    font-size: 0.75vw;
+}
+
+.period {
+    font-style: italic;
+    font-size: 0.65vw;
+}
+
+.navigation {
+    display: flex;
+    width: 100%;
+    height: 5%;
+    background-color: #202021;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 1);
+}
+
+.navigation-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 0.1vw;
+}
+
+.navigation-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 10vw;
+    background-color: #292929;
+    transition: .2s;
+}
+
+.navigation-tab:hover {
+    cursor: pointer;
+    background-color: #181818;
+    color: white;
+}
+
+.pressed-navigation-tab {
+    background-color: #181818;
+}
+
+.aboutme,
+.competences,
+.courses,
+.projects {
+    position: relative;
+}
+
+.aboutme::before {
+    content: "#";
+    position: absolute;
+    color: #98d7ef;
+    left: 1.7vw;
+}
+
+.courses::before {
+    content: "<>";
+    position: absolute;
+    color: #b27c5b;
+    left: 1.7vw;
+}
+
+.competences::before {
+    content: "CS";
+    position: absolute;
+    color: yellow;
+    left: 1vw;
+    font-size: 0.7vw;
+}
+
+.projects::before {
+    content: "PJ";
+    position: absolute;
+    color: #98d7ef;
+    left: 1.5vw;
+    font-size: 0.7vw;
+}
+
+.main__content {
+    height: 85%;
+}
+
+.main__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    margin-left: 9vw;
+    margin-top: 3vw;
+}
+
+.main__course-image {
+    width: 8vw;
+    height: 5vw;
+    object-fit: contain;
+}
+
+.main__info-wrapper {
+    display: flex;
+    gap: 5vw;
+    
+}
+
+.main__course-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    min-width: 15vw;
+}
+
+.main__course-text {
+    color: #98d7ef;
+}
+
+.course-name,
+.course-organization,
+.course-duration {
+    position: relative;
+}
+
+.course-name::before {
+    content: 'Course name:';
+    position: absolute;
+    color: #926ba3;
+    left: -7vw;
+}
+
+.course-organization::before {
+    content: 'Organization:';
+    position: absolute;
+    color: #926ba3;
+    left: -7vw;
+}
+
+.course-duration::before {
+    content: 'Duration:';
+    position: absolute;
+    color: #926ba3;
+    left: -7vw;
+}
+
+.main__course-topics-text {
+    color: #b27c5b;
+    line-height: 1.5vw;
+}
+
+.main__competences-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 5vw;
+    padding-top: 5vw;
+}
+
+.main__competence-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    height: 10%;
+    padding: 0 2vw;
+    background-color: #303030;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.main__competences {
+    display: flex;
+    gap: 1vw;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main__competence {
+    padding: 1vw 2vw;
+    background: #926ba3;
+    border-radius: 5px;
+    transition: .4s;
+}
+
+.main__competence:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #9981a3;
+    transform: scale(1.1);
+}
+
+.main__competence-text {
+    color: #b27c5b;
+    font-weight: 600;
+}
+
+.level-band {
+    position: relative;
+    width: 70%;
+    height: 10%;
+    background-color: #454545;
+    border-radius: 10px;
+}
+
+.Reactjs::before,
+.MobX::before,
+.TypeScript::before,
+.JavaScript::before,
+.HTML::before,
+.CSS::before,
+.REST::before,
+.Webpack::before,
+.OOP::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    background-color: #98d7ef;
+    border-radius: 10px;
+}
+
+.Reactjs::before {
+    width: 60%;
+}
+
+.MobX::before {
+    width: 50%;
+}
+
+.TypeScript::before {
+    width: 60%;
+}
+
+.JavaScript::before {
+    width: 80%;
+}
+
+.HTML::before {
+    width: 70%;
+}
+
+.CSS::before {
+    width: 80%;
+}
+
+.REST::before {
+    width: 60%;
+}
+
+.Webpack::before {
+    width: 60%;
+}
+
+.OOP::before {
+    width: 50%;
+}
+
+.main__slider-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 5vw;
+    width: 95%;
+    height: 80%;
+    gap: 0.5vw;
+}
+
+.left-slide,
+.right-slide,
+.main-slide {
+    display: flex;
+    align-items: center;
+}
+
+.left-slide,
+.right-slide {
+    height: 25%;
+    width: 25%;
+}
+
+.slide-image:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 3px #b27c5b;
+} 
+
+.main-slide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1vw;
+    width: 50%;
+    height: 100%
+}
+
+.main-slide__image-wrapper {
+    position: relative;
+}
+
+.main-slide__image-wrapper:hover .main-slide__inlarge-image-button {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.main-slide__inlarge-image-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: .2s;
+    opacity: 0;
+    background-color: #202021;
+}
+
+.fa-magnifying-glass {
+    position: absolute;
+    transform: scale(4);
+    transition: .2s;
+}
+
+.slide-image {
+    object-fit: contain;
+    width: 100%;   
+    transition: .3s;
+}
+
+.left,
+.right {
+    opacity: 0.3;
+}
+
+.main-slide__project-name {
+    font-size: 1.5vw;
+    color: #98d7ef;
+    width: 100%;
+    text-align: center;
+}
+
+.main-slide__project-technologies {
+    color: #b27c5b;
+    width: 100%;
+    text-align: center;
+}
+
+.showered {
+    width: 60vw;
+    z-index: 10;
+    animation: make-bigger 1s;
+}
+
+.hide {
+    display: none;
+}
+
+@keyframes make-bigger {
+    0% {width: 100%;}
+    100% {width: 60vw;}
+}
