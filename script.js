@@ -9,6 +9,7 @@ import updateMainSlideSrc from './utils/updateMainSlideSrc.js';
 
 const tabsLeftSection = document.querySelectorAll('.tab');
 const mainContent = document.querySelector('.main__content');
+const rightSection = document.querySelector('.main__right-section');
 let leftSlideNum = 0;
 let rightSlideNum = 2;
 let mainSlideNum = 1;
@@ -157,7 +158,10 @@ function addMainContent(text) {
   mainSlideInlargeButton.addEventListener('click', () => {
     document
       .querySelector('.main-slide__image-wrapper')
-      .classList.add('showered');
+      .classList.remove('closed');
+    document
+      .querySelector('.main-slide__image-wrapper')
+      .classList.add('opened');
     document
       .querySelector('.main-slide__inlarge-image-button')
       .classList.add('hide');
@@ -185,4 +189,24 @@ navigationTabsList.forEach((tab) => {
     tab.classList.add('pressed-navigation-tab');
     addMainContent(tab.textContent);
   });
+});
+
+rightSection.addEventListener('click', (e) => {
+  if (
+    e.target.classList[0] !== 'slide-image' &&
+    e.target.classList[0] !== 'main-slide__inlarge-image-button' &&
+    e.target.classList[0] !== 'fa-solid' &&
+    e.target.classList[0] !== 'navigation-tab' &&
+    e.target.classList[0] !== 'navigation-container'
+  ) {
+    document
+      .querySelector('.main-slide__image-wrapper')
+      .classList.remove('opened');
+    document
+      .querySelector('.main-slide__image-wrapper')
+      .classList.add('closed');
+    document
+      .querySelector('.main-slide__inlarge-image-button')
+      .classList.remove('hide');
+  }
 });

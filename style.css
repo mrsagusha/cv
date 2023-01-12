@@ -500,10 +500,16 @@ span {
     text-align: center;
 }
 
-.showered {
+.opened {
     width: 60vw;
     z-index: 10;
     animation: make-bigger 1s;
+}
+
+.closed {
+    width: 100%;
+    animation: make-smaller 1s;
+    z-index: 10;
 }
 
 .hide {
@@ -513,4 +519,9 @@ span {
 @keyframes make-bigger {
     0% {width: 100%;}
     100% {width: 60vw;}
+}
+
+@keyframes make-smaller {
+    0% {width: 60vw;}
+    100% {width: 100%;}
 }
