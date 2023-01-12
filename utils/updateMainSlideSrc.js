@@ -4,6 +4,6 @@ export default function updateMainSlideSrc(
   leftSlideNum,
   rightSlideNum
 ) {
-  leftSlide.src = `../assets/images/slider/slide${[leftSlideNum]}.png`;
-  rightSlide.src = `../assets/images/slider/slide${[rightSlideNum]}.png`;
+  leftSlide.src = `./assets/images/slider/slide${[leftSlideNum]}.png`;
+  rightSlide.src = `./assets/images/slider/slide${[rightSlideNum]}.png`;
 }
