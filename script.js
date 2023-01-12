@@ -9,9 +9,6 @@ import updateMainSlideSrc from './utils/updateMainSlideSrc.js';
 
 const tabsLeftSection = document.querySelectorAll('.tab');
 const mainContent = document.querySelector('.main__content');
-const mainSlideInlargeButton = document.querySelector(
-  '.main-slide__inlarge-image-button'
-);
 let leftSlideNum = 0;
 let rightSlideNum = 2;
 let mainSlideNum = 1;
@@ -64,15 +61,9 @@ function addMainContent(text) {
   const mainProjectTechonologies = document.querySelector(
     '.main-slide__project-technologies'
   );
-  if (mainSlide) {
-    const mainSlideImage = mainSlide.firstElementChild.firstElementChild;
-  }
-  if (leftSlide) {
-    const leftSlideImage = leftSlide.firstElementChild;
-  }
-  if (rightSlide) {
-    const rightSlideImage = rightSlide.firstElementChild;
-  }
+  const mainSlideInlargeButton = document.querySelector(
+    '.main-slide__inlarge-image-button'
+  );
   let levelBandCompetence = '';
 
   setCompetencesInfoField(
@@ -83,7 +74,8 @@ function addMainContent(text) {
   );
 
   leftSlide.addEventListener('click', () => {
-    mainSlideImage.src = leftSlideImage.src;
+    mainSlide.firstElementChild.firstElementChild.src =
+      leftSlide.firstElementChild.src;
     if (leftSlideNum === 0) {
       leftSlideNum = 6;
       rightSlideNum = 1;
@@ -98,8 +90,8 @@ function addMainContent(text) {
     }
 
     updateMainSlideSrc(
-      leftSlideImage,
-      rightSlideImage,
+      leftSlide.firstElementChild,
+      rightSlide.firstElementChild,
       leftSlideNum,
       rightSlideNum
     );
@@ -123,7 +115,8 @@ function addMainContent(text) {
   });
 
   rightSlide.addEventListener('click', () => {
-    mainSlideImage.src = rightSlideImage.src;
+    mainSlide.firstElementChild.firstElementChild.src =
+      rightSlide.firstElementChild.src;
 
     if (rightSlideNum === 6) {
       rightSlideNum = 0;
@@ -137,8 +130,8 @@ function addMainContent(text) {
     }
 
     updateMainSlideSrc(
-      leftSlideImage,
-      rightSlideImage,
+      leftSlide.firstElementChild,
+      rightSlide.firstElementChild,
       leftSlideNum,
       rightSlideNum
     );
