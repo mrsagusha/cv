@@ -6,17 +6,18 @@ import competencesHTMLTemplate from './data/competencesHTMLTemplate.js';
 import projectsHTMLTemplate from './data/projectsHTMLTemplate.js';
 import setCompetencesInfoField from './utils/setCompetencesInfoField.js';
 import updateMainSlideSrc from './utils/updateMainSlideSrc.js';
-import toggleImageByLeftClick from './utils/toggleImageByLeftClick.js';
 
 const tabsLeftSection = document.querySelectorAll('.tab');
 const mainContent = document.querySelector('.main__content');
+const mainSlideInlargeButton = document.querySelector(
+  '.main-slide__inlarge-image-button'
+);
 let leftSlideNum = 0;
 let rightSlideNum = 2;
 let mainSlideNum = 1;
 
 function addMainContent(text) {
   let mainContentInnerHtml;
-  mainContent.innerHTML = '';
 
   if (text === 'courses') {
     mainContentInnerHtml = `<div style="padding-right: 1.5vw">
@@ -46,14 +47,10 @@ function addMainContent(text) {
   }
 
   if (text === 'competences') {
-    mainContent.innerHTML = '';
-
     mainContent.innerHTML = competencesHTMLTemplate;
   }
 
   if (text === 'projects') {
-    mainContent.innerHTML = '';
-
     mainContent.innerHTML = projectsHTMLTemplate;
   }
 
@@ -67,6 +64,9 @@ function addMainContent(text) {
   const mainProjectTechonologies = document.querySelector(
     '.main-slide__project-technologies'
   );
+  const mainSlideImage = mainSlide.firstElementChild.firstElementChild;
+  const leftSlideImage = leftSlide.firstElementChild;
+  const rightSlideImage = rightSlide.firstElementChild;
   let levelBandCompetence = '';
 
   setCompetencesInfoField(
@@ -77,8 +77,7 @@ function addMainContent(text) {
   );
 
   leftSlide.addEventListener('click', () => {
-    mainSlide.firstElementChild.firstElementChild.src =
-      leftSlide.firstElementChild.src;
+    mainSlideImage.src = leftSlideImage.src;
     if (leftSlideNum === 0) {
       leftSlideNum = 6;
       rightSlideNum = 1;
@@ -91,38 +90,35 @@ function addMainContent(text) {
         rightSlideNum = leftSlideNum + 2;
       }
     }
+
     updateMainSlideSrc(
-      leftSlide.firstElementChild,
-      rightSlide.firstElementChild,
+      leftSlideImage,
+      rightSlideImage,
       leftSlideNum,
-      rightSlideNum,
-      mainSlideNum,
-      mainProjectName,
-      mainProjectTechonologies
+      rightSlideNum
     );
+
     (function updateMainNum() {
       mainSlideNum = leftSlideNum + 1;
     })();
+
     if (mainSlideNum === 7) {
-      document.querySelector('.main-slide__project-name').innerHTML =
-        projectDiscriptions.slide0.name;
-      document.querySelector('.main-slide__project-technologies').innerHTML =
+      mainProjectName.innerHTML = projectDiscriptions.slide0.name;
+      mainProjectTechonologies.innerHTML =
         projectDiscriptions.slide0.technologies.join(' ');
     } else {
-      document.querySelector('.main-slide__project-name').innerHTML = `${
+      mainProjectName.innerHTML = `${
         projectDiscriptions[`slide${mainSlideNum}`].name
       }`;
-      document.querySelector(
-        '.main-slide__project-technologies'
-      ).innerHTML = `${projectDiscriptions[
+      mainProjectTechonologies.innerHTML = `${projectDiscriptions[
         `slide${mainSlideNum}`
       ].technologies.join(' ')}`;
     }
   });
 
   rightSlide.addEventListener('click', () => {
-    mainSlide.firstElementChild.firstElementChild.src =
-      rightSlide.firstElementChild.src;
+    mainSlideImage.src = rightSlideImage.src;
+
     if (rightSlideNum === 6) {
       rightSlideNum = 0;
       leftSlideNum = 5;
@@ -133,42 +129,40 @@ function addMainContent(text) {
       rightSlideNum += 1;
       leftSlideNum = rightSlideNum - 2;
     }
+
     updateMainSlideSrc(
-      leftSlide.firstElementChild,
-      rightSlide.firstElementChild,
+      leftSlideImage,
+      rightSlideImage,
       leftSlideNum,
       rightSlideNum
     );
+
     (function updateMainNum() {
       mainSlideNum = rightSlideNum - 1;
     })();
+
     if (mainSlideNum === -1) {
-      document.querySelector('.main-slide__project-name').innerHTML =
-        projectDiscriptions.slide6.name;
-      document.querySelector('.main-slide__project-technologies').innerHTML =
+      mainProjectName.innerHTML = projectDiscriptions.slide6.name;
+      mainProjectTechonologies.innerHTML =
         projectDiscriptions.slide6.technologies.join(' ');
     } else {
-      document.querySelector('.main-slide__project-name').innerHTML = `${
+      mainProjectName.innerHTML = `${
         projectDiscriptions[`slide${mainSlideNum}`].name
       }`;
-      document.querySelector(
-        '.main-slide__project-technologies'
-      ).innerHTML = `${projectDiscriptions[
+      mainProjectTechonologies.innerHTML = `${projectDiscriptions[
         `slide${mainSlideNum}`
       ].technologies.join(' ')}`;
     }
   });
 
-  document
-    .querySelector('.main-slide__inlarge-image-button')
-    .addEventListener('click', () => {
-      document
-        .querySelector('.main-slide__image-wrapper')
-        .classList.add('showered');
-      document
-        .querySelector('.main-slide__inlarge-image-button')
-        .classList.add('hide');
-    });
+  mainSlideInlargeButton.addEventListener('click', () => {
+    document
+      .querySelector('.main-slide__image-wrapper')
+      .classList.add('showered');
+    document
+      .querySelector('.main-slide__inlarge-image-button')
+      .classList.add('hide');
+  });
 }
 
 createNavigationTab('about me');
@@ -180,9 +174,11 @@ tabsLeftSection.forEach((tab) => {
   tab.addEventListener('click', () => tab.classList.toggle('pressed'));
 });
 
-document.querySelectorAll('.navigation-tab').forEach((tab) => {
+const navigationTabsList = document.querySelectorAll('.navigation-tab');
+
+navigationTabsList.forEach((tab) => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.navigation-tab').forEach((tab) => {
+    navigationTabsList.forEach((tab) => {
       if (tab.classList.contains('pressed-navigation-tab')) {
         tab.classList.remove('pressed-navigation-tab');
       }
