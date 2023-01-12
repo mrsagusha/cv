@@ -6,13 +6,24 @@ import competencesHTMLTemplate from './data/competencesHTMLTemplate.js';
 import projectsHTMLTemplate from './data/projectsHTMLTemplate.js';
 import setCompetencesInfoField from './utils/setCompetencesInfoField.js';
 import updateMainSlideSrc from './utils/updateMainSlideSrc.js';
+import zoomOutMainSlideImage from './utils/zoomOutMainSlideImage.js';
+import zoomInMainSlideImage from './utils/zoomInMainSlideImage.js';
 
 const tabsLeftSection = document.querySelectorAll('.tab');
 const mainContent = document.querySelector('.main__content');
 const rightSection = document.querySelector('.main__right-section');
+const greetingButton = document.querySelector('.main__greeting-button');
 let leftSlideNum = 0;
 let rightSlideNum = 2;
 let mainSlideNum = 1;
+
+if (greetingButton) {
+  greetingButton.addEventListener('click', () => {
+    document.querySelector('.main__greeting').classList.add('hide');
+    document.querySelector('.main__left-section').classList.remove('hide');
+    document.querySelector('.main__right-section').classList.remove('hide');
+  });
+}
 
 function addMainContent(text) {
   let mainContentInnerHtml;
@@ -74,98 +85,98 @@ function addMainContent(text) {
     levelBandCompetence
   );
 
-  leftSlide.addEventListener('click', () => {
-    mainSlide.firstElementChild.firstElementChild.src =
-      leftSlide.firstElementChild.src;
-    if (leftSlideNum === 0) {
-      leftSlideNum = 6;
-      rightSlideNum = 1;
-    } else if (leftSlideNum === 6) {
-      leftSlideNum -= 1;
-      rightSlideNum = 0;
-    } else {
-      {
+  if (leftSlide) {
+    leftSlide.addEventListener('click', () => {
+      mainSlide.firstElementChild.firstElementChild.src =
+        leftSlide.firstElementChild.src;
+      if (leftSlideNum === 0) {
+        leftSlideNum = 6;
+        rightSlideNum = 1;
+      } else if (leftSlideNum === 6) {
         leftSlideNum -= 1;
-        rightSlideNum = leftSlideNum + 2;
+        rightSlideNum = 0;
+      } else {
+        {
+          leftSlideNum -= 1;
+          rightSlideNum = leftSlideNum + 2;
+        }
       }
-    }
 
-    updateMainSlideSrc(
-      leftSlide.firstElementChild,
-      rightSlide.firstElementChild,
-      leftSlideNum,
-      rightSlideNum
-    );
+      updateMainSlideSrc(
+        leftSlide.firstElementChild,
+        rightSlide.firstElementChild,
+        leftSlideNum,
+        rightSlideNum
+      );
 
-    (function updateMainNum() {
-      mainSlideNum = leftSlideNum + 1;
-    })();
+      (function updateMainNum() {
+        mainSlideNum = leftSlideNum + 1;
+      })();
 
-    if (mainSlideNum === 7) {
-      mainProjectName.innerHTML = projectDiscriptions.slide0.name;
-      mainProjectTechonologies.innerHTML =
-        projectDiscriptions.slide0.technologies.join(' ');
-    } else {
-      mainProjectName.innerHTML = `${
-        projectDiscriptions[`slide${mainSlideNum}`].name
-      }`;
-      mainProjectTechonologies.innerHTML = `${projectDiscriptions[
-        `slide${mainSlideNum}`
-      ].technologies.join(' ')}`;
-    }
-  });
+      if (mainSlideNum === 7) {
+        mainProjectName.innerHTML = projectDiscriptions.slide0.name;
+        mainProjectTechonologies.innerHTML =
+          projectDiscriptions.slide0.technologies.join(' ');
+      } else {
+        mainProjectName.innerHTML = `${
+          projectDiscriptions[`slide${mainSlideNum}`].name
+        }`;
+        mainProjectTechonologies.innerHTML = `${projectDiscriptions[
+          `slide${mainSlideNum}`
+        ].technologies.join(' ')}`;
+      }
+    });
+  }
 
-  rightSlide.addEventListener('click', () => {
-    mainSlide.firstElementChild.firstElementChild.src =
-      rightSlide.firstElementChild.src;
+  if (rightSlide) {
+    rightSlide.addEventListener('click', () => {
+      mainSlide.firstElementChild.firstElementChild.src =
+        rightSlide.firstElementChild.src;
 
-    if (rightSlideNum === 6) {
-      rightSlideNum = 0;
-      leftSlideNum = 5;
-    } else if (rightSlideNum === 0) {
-      leftSlideNum = 6;
-      rightSlideNum += 1;
-    } else {
-      rightSlideNum += 1;
-      leftSlideNum = rightSlideNum - 2;
-    }
+      if (rightSlideNum === 6) {
+        rightSlideNum = 0;
+        leftSlideNum = 5;
+      } else if (rightSlideNum === 0) {
+        leftSlideNum = 6;
+        rightSlideNum += 1;
+      } else {
+        rightSlideNum += 1;
+        leftSlideNum = rightSlideNum - 2;
+      }
 
-    updateMainSlideSrc(
-      leftSlide.firstElementChild,
-      rightSlide.firstElementChild,
-      leftSlideNum,
-      rightSlideNum
-    );
+      updateMainSlideSrc(
+        leftSlide.firstElementChild,
+        rightSlide.firstElementChild,
+        leftSlideNum,
+        rightSlideNum
+      );
 
-    (function updateMainNum() {
-      mainSlideNum = rightSlideNum - 1;
-    })();
+      (function updateMainNum() {
+        mainSlideNum = rightSlideNum - 1;
+      })();
 
-    if (mainSlideNum === -1) {
-      mainProjectName.innerHTML = projectDiscriptions.slide6.name;
-      mainProjectTechonologies.innerHTML =
-        projectDiscriptions.slide6.technologies.join(' ');
-    } else {
-      mainProjectName.innerHTML = `${
-        projectDiscriptions[`slide${mainSlideNum}`].name
-      }`;
-      mainProjectTechonologies.innerHTML = `${projectDiscriptions[
-        `slide${mainSlideNum}`
-      ].technologies.join(' ')}`;
-    }
-  });
+      if (mainSlideNum === -1) {
+        mainProjectName.innerHTML = projectDiscriptions.slide6.name;
+        mainProjectTechonologies.innerHTML =
+          projectDiscriptions.slide6.technologies.join(' ');
+      } else {
+        mainProjectName.innerHTML = `${
+          projectDiscriptions[`slide${mainSlideNum}`].name
+        }`;
+        mainProjectTechonologies.innerHTML = `${projectDiscriptions[
+          `slide${mainSlideNum}`
+        ].technologies.join(' ')}`;
+      }
+    });
+  }
 
-  mainSlideInlargeButton.addEventListener('click', () => {
-    document
-      .querySelector('.main-slide__image-wrapper')
-      .classList.remove('closed');
-    document
-      .querySelector('.main-slide__image-wrapper')
-      .classList.add('opened');
-    document
-      .querySelector('.main-slide__inlarge-image-button')
-      .classList.add('hide');
-  });
+  zoomInMainSlideImage(mainSlideInlargeButton);
+  if (competenceInfoField) {
+    competenceInfoField.addEventListener('click', () => {
+      document;
+      competenceInfoField.classList.add('opened-field');
+    });
+  }
 }
 
 createNavigationTab('about me');
@@ -191,22 +202,4 @@ navigationTabsList.forEach((tab) => {
   });
 });
 
-rightSection.addEventListener('click', (e) => {
-  if (
-    e.target.classList[0] !== 'slide-image' &&
-    e.target.classList[0] !== 'main-slide__inlarge-image-button' &&
-    e.target.classList[0] !== 'fa-solid' &&
-    e.target.classList[0] !== 'navigation-tab' &&
-    e.target.classList[0] !== 'navigation-container'
-  ) {
-    document
-      .querySelector('.main-slide__image-wrapper')
-      .classList.remove('opened');
-    document
-      .querySelector('.main-slide__image-wrapper')
-      .classList.add('closed');
-    document
-      .querySelector('.main-slide__inlarge-image-button')
-      .classList.remove('hide');
-  }
-});
+zoomOutMainSlideImage(rightSection);
