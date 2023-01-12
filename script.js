@@ -64,9 +64,15 @@ function addMainContent(text) {
   const mainProjectTechonologies = document.querySelector(
     '.main-slide__project-technologies'
   );
-  const mainSlideImage = mainSlide.firstElementChild.firstElementChild;
-  const leftSlideImage = leftSlide.firstElementChild;
-  const rightSlideImage = rightSlide.firstElementChild;
+  if (mainSlide) {
+    const mainSlideImage = mainSlide.firstElementChild.firstElementChild;
+  }
+  if (leftSlide) {
+    const leftSlideImage = leftSlide.firstElementChild;
+  }
+  if (rightSlide) {
+    const rightSlideImage = rightSlide.firstElementChild;
+  }
   let levelBandCompetence = '';
 
   setCompetencesInfoField(
