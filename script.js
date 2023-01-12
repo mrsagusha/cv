@@ -13,6 +13,7 @@ const tabsLeftSection = document.querySelectorAll('.tab');
 const mainContent = document.querySelector('.main__content');
 const rightSection = document.querySelector('.main__right-section');
 const greetingButton = document.querySelector('.main__greeting-button');
+const burgerMenu = document.querySelector('.burger-menu');
 let leftSlideNum = 0;
 let rightSlideNum = 2;
 let mainSlideNum = 1;
@@ -22,6 +23,14 @@ if (greetingButton) {
     document.querySelector('.main__greeting').classList.add('hide');
     document.querySelector('.main__left-section').classList.remove('hide');
     document.querySelector('.main__right-section').classList.remove('hide');
+  });
+}
+
+if (burgerMenu) {
+  burgerMenu.addEventListener('click', () => {
+    burgerMenu.classList.toggle('open-menu');
+    document.querySelector('.main__right-section').classList.toggle('close');
+    document.querySelector('.main__left-section').classList.toggle('shadow');
   });
 }
 
