@@ -14,6 +14,7 @@ const mainContent = document.querySelector('.main__content');
 const rightSection = document.querySelector('.main__right-section');
 const greetingButton = document.querySelector('.main__greeting-button');
 const burgerMenu = document.querySelector('.burger-menu');
+const leftSectionContent = document.querySelector('.left-section-content');
 let leftSlideNum = 0;
 let rightSlideNum = 2;
 let mainSlideNum = 1;
@@ -61,15 +62,27 @@ function addMainContent(text) {
         UdemyInfo[4]
       )}
     </div>`;
-    mainContent.innerHTML = mainContentInnerHtml;
+    if (window.innerWidth <= 767) {
+      leftSectionContent.innerHTML = mainContentInnerHtml;
+    } else {
+      mainContent.innerHTML = mainContentInnerHtml;
+    }
   }
 
   if (text === 'competences') {
-    mainContent.innerHTML = competencesHTMLTemplate;
+    if (window.innerWidth <= 767) {
+      leftSectionContent.innerHTML = competencesHTMLTemplate;
+    } else {
+      mainContent.innerHTML = competencesHTMLTemplate;
+    }
   }
 
   if (text === 'projects') {
-    mainContent.innerHTML = projectsHTMLTemplate;
+    if (window.innerWidth <= 767) {
+      leftSectionContent.innerHTML = projectsHTMLTemplate;
+    } else {
+      mainContent.innerHTML = projectsHTMLTemplate;
+    }
   }
 
   const competencesList = document.querySelectorAll('.main__competence');
