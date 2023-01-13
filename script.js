@@ -4,6 +4,7 @@ import createNavigationTab from './utils/createNavigationTab.js';
 import createCourseTemplate from './utils/createCourseTemplate.js';
 import competencesHTMLTemplate from './data/competencesHTMLTemplate.js';
 import projectsHTMLTemplate from './data/projectsHTMLTemplate.js';
+import aboutMeHTMLTemplate from './data/aboutMeHTMLTemplate.js';
 import setCompetencesInfoField from './utils/setCompetencesInfoField.js';
 import updateMainSlideSrc from './utils/updateMainSlideSrc.js';
 import zoomOutMainSlideImage from './utils/zoomOutMainSlideImage.js';
@@ -18,6 +19,18 @@ const leftSectionContent = document.querySelector('.left-section-content');
 let leftSlideNum = 0;
 let rightSlideNum = 2;
 let mainSlideNum = 1;
+
+document.querySelector('.main__left-section').addEventListener('click', (e) => {
+  if (
+    document.querySelector('.shadow') &&
+    e.target.classList[0] !== 'navigation-tab' &&
+    e.target.classList[0] !== 'burger-menu'
+  ) {
+    burgerMenu.classList.toggle('open-menu');
+    document.querySelector('.main__right-section').classList.toggle('close');
+    document.querySelector('.main__left-section').classList.toggle('shadow');
+  }
+});
 
 if (greetingButton) {
   greetingButton.addEventListener('click', () => {
@@ -37,6 +50,14 @@ if (burgerMenu) {
 
 function addMainContent(text) {
   let mainContentInnerHtml;
+
+  if (text === 'about me') {
+    if (window.innerWidth <= 767) {
+      leftSectionContent.innerHTML = aboutMeHTMLTemplate;
+    } else {
+      mainContent.innerHTML = aboutMeHTMLTemplate;
+    }
+  }
 
   if (text === 'courses') {
     mainContentInnerHtml = `<div style="padding-right: 1.5vw">
@@ -193,12 +214,6 @@ function addMainContent(text) {
   }
 
   zoomInMainSlideImage(mainSlideInlargeButton);
-  if (competenceInfoField) {
-    competenceInfoField.addEventListener('click', () => {
-      document;
-      competenceInfoField.classList.add('opened-field');
-    });
-  }
 }
 
 createNavigationTab('about me');
